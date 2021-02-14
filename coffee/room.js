@@ -1,6 +1,5 @@
 /*
  * decaffeinate suggestions:
- * DS002: Fix invalid constructor
  * DS101: Remove unnecessary use of Array.from
  * DS102: Remove unnecessary code created because of implicit returns
  * DS207: Consider shorter variations of null checks
@@ -28,6 +27,8 @@ palava.Room = class Room extends this.EventEmitter {
   // @option options ownStatus [Object] The status of the local user
   //
   constructor(roomId, channel, userMedia, options) {
+    super();
+
     this.setupUserMedia = this.setupUserMedia.bind(this);
     this.setupOptions = this.setupOptions.bind(this);
     this.setupDistributor = this.setupDistributor.bind(this);

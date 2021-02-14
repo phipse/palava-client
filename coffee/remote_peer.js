@@ -1,6 +1,5 @@
 /*
  * decaffeinate suggestions:
- * DS002: Fix invalid constructor
  * DS102: Remove unnecessary code created because of implicit returns
  * DS207: Consider shorter variations of null checks
  * DS208: Avoid top-level this
@@ -28,6 +27,8 @@ palava.RemotePeer = class RemotePeer extends palava.Peer {
   // @param turnCredentials [Object] username and password for the turn server (optional)
   //
   constructor(id, status, room, offers, turnCredentials) {
+    super(id, status);
+
     this.getStream = this.getStream.bind(this);
     this.toggleMute = this.toggleMute.bind(this);
     this.generateIceOptions = this.generateIceOptions.bind(this);
@@ -40,9 +41,9 @@ palava.RemotePeer = class RemotePeer extends palava.Peer {
     this.sdpSender = this.sdpSender.bind(this);
     this.oaError = this.oaError.bind(this);
     this.closePeerConnection = this.closePeerConnection.bind(this);
+
     this.muted = false;
     this.local = false;
-    super(id, status);
 
     this.room = room;
     this.remoteStream = null;

@@ -1,6 +1,5 @@
 /*
  * decaffeinate suggestions:
- * DS002: Fix invalid constructor
  * DS102: Remove unnecessary code created because of implicit returns
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
@@ -13,6 +12,8 @@ const {
 
 palava.Gum = class Gum extends this.EventEmitter {
   constructor(config) {
+    super();
+
     this.changeConfig = this.changeConfig.bind(this);
     this.requestStream = this.requestStream.bind(this);
     this.getStream = this.getStream.bind(this);

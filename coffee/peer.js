@@ -1,6 +1,5 @@
 /*
  * decaffeinate suggestions:
- * DS002: Fix invalid constructor
  * DS103: Rewrite code to no longer use __guard__, or convert again using --optional-chaining
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
@@ -20,6 +19,8 @@ palava.Peer = class Peer extends this.EventEmitter {
   // @option staus name [String] The chosen name of the participant
   //
   constructor(id, status) {
+    super();
+
     this.transmitsAudio = this.transmitsAudio.bind(this);
     this.hasAudio = this.hasAudio.bind(this);
     this.transmitsVideo = this.transmitsVideo.bind(this);
@@ -32,7 +33,11 @@ palava.Peer = class Peer extends this.EventEmitter {
     this.isRemote = this.isRemote.bind(this);
     this.id     = id;
     this.status = status || {};
-    if (!this.status.user_agent) { this.status.user_agent = palava.browser.getUserAgent(); }
+
+    if (!this.status.user_agent) {
+      this.status.user_agent = palava.browser.getUserAgent();
+    }
+
     this.joinTime = (new Date()).getTime();
     this.ready  = false;
     this.error  = null;

@@ -1,6 +1,5 @@
 /*
  * decaffeinate suggestions:
- * DS002: Fix invalid constructor
  * DS101: Remove unnecessary use of Array.from
  * DS102: Remove unnecessary code created because of implicit returns
  * DS206: Consider reworking classes to avoid initClass
@@ -18,6 +17,8 @@ const Cls = (palava.DataChannel = class DataChannel extends this.EventEmitter {
   }
 
   constructor(channel) {
+    super();
+
     this.channel = channel;
     this.channel.onmessage = event => this.emit('message', event.data);
     this.channel.onclose = () => this.emit('close');

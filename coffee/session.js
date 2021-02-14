@@ -1,6 +1,5 @@
 /*
  * decaffeinate suggestions:
- * DS002: Fix invalid constructor
  * DS102: Remove unnecessary code created because of implicit returns
  * DS207: Consider shorter variations of null checks
  * DS208: Avoid top-level this
@@ -20,6 +19,8 @@ palava.Session = class Session extends this.EventEmitter {
   // @param o [Object] See Session#connect for available options
   //
   constructor(o) {
+    super();
+
     this.connect = this.connect.bind(this);
     this.reconnect = this.reconnect.bind(this);
     this.tearDown = this.tearDown.bind(this);

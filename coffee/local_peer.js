@@ -1,6 +1,5 @@
 /*
  * decaffeinate suggestions:
- * DS002: Fix invalid constructor
  * DS101: Remove unnecessary use of Array.from
  * DS102: Remove unnecessary code created because of implicit returns
  * DS208: Avoid top-level this
@@ -20,6 +19,8 @@ palava.LocalPeer = class LocalPeer extends palava.Peer {
   // @param status [Object] An object conataining state which is exchanged through the palava machine (see `palava.Peer` for more informations)
   // @param room [palava.Room] The room in which the peer is present
   constructor(id, status, room) {
+    super(id, status);
+
     this.setupUserMedia = this.setupUserMedia.bind(this);
     this.setupRoom = this.setupRoom.bind(this);
     this.getStream = this.getStream.bind(this);
@@ -29,9 +30,9 @@ palava.LocalPeer = class LocalPeer extends palava.Peer {
     this.disableVideo = this.disableVideo.bind(this);
     this.enableVideo = this.enableVideo.bind(this);
     this.leave = this.leave.bind(this);
+
     this.muted    = true; // currently refers to displaying of local stream, not the sent one
     this.local    = true;
-    super(id, status);
 
     this.room = room;
     this.userMedia = room.userMedia;

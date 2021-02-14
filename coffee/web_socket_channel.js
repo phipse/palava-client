@@ -1,6 +1,5 @@
 /*
  * decaffeinate suggestions:
- * DS002: Fix invalid constructor
  * DS101: Remove unnecessary use of Array.from
  * DS102: Remove unnecessary code created because of implicit returns
  * DS207: Consider shorter variations of null checks
@@ -19,6 +18,8 @@ palava.WebSocketChannel = class WebSocketChannel extends this.EventEmitter {
 
   // @param address [String] Address of the websocket. Should start with `ws://` for web sockets or `wss://` for secure web sockets.
   constructor(address, retries) {
+    super();
+
     this.isConnected = this.isConnected.bind(this);
     this.sendDeliverOnConnectMessages = this.sendDeliverOnConnectMessages.bind(this);
     this.setupWebsocket = this.setupWebsocket.bind(this);
