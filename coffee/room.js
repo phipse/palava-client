@@ -7,18 +7,15 @@ const defaultExport = {};
  * DS208: Avoid top-level this
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-//= require ./local_peer
-//= require ./remote_peer
-//= require ./gum
-//= require ./distributor
 
-const {
-  palava
-} = defaultExport;
+import * as distributor from "distributor"
+import * as local_peer from "local_peer"
+import * as remote_peer from "remote_peer"
+import * as browser from "browser"
 
 // A room connecting multiple participants
 //
-palava.Room = class Room extends defaultExport.EventEmitter {
+defaultExport.Room = class Room extends defaultExport.EventEmitter {
 
   // @param roomId [String] ID of the room
   // @param channel [palava.Channel] Channel used for communication
@@ -78,7 +75,7 @@ palava.Room = class Room extends defaultExport.EventEmitter {
   // @nodoc
   //
   setupDistributor() {
-    this.distributor = new palava.Distributor(this.channel);
+    this.distributor = new distributor.Distributor(this.channel);
 
     this.distributor.on('joined_room', msg => {
       let turnCredentials;
@@ -88,23 +85,30 @@ palava.Room = class Room extends defaultExport.EventEmitter {
       } else {
         turnCredentials = null;
       }
-      new palava.LocalPeer(msg.own_id, this.options.ownStatus, this);
+      new local_peer.LocalPeer(msg.own_id, this.options.ownStatus, this);
       for (let peer of Array.from(msg.peers)) {
-        const offers = !palava.browser.isChrome();
-        const newPeer = new palava.RemotePeer(peer.peer_id, peer.status, this, offers, turnCredentials);
+        const offers = !browser.browser.isChrome();
+        const newPeer = new remote_peer.RemotePeer(
+	  peer.peer_id,
+	  peer.status,
+	  this,
+	  offers,
+	  turnCredentials);
       }
       return this.emit("joined");
     });
 
     this.distributor.on('new_peer', msg => {
       const offers = msg.status.user_agent === 'chrome';
-      const newPeer = new palava.RemotePeer(msg.peer_id, msg.status, this, offers);
+      const newPeer = new remote_peer.RemotePeer(msg.peer_id, msg.status, this, offers);
       return this.emit('peer_joined', newPeer);
     });
 
-    this.distributor.on('error',    msg => this.emit('signaling_error', 'server', msg.description));
+    this.distributor.on('error',
+      msg => this.emit('signaling_error', 'server', msg.description));
 
-    return this.distributor.on('shutdown', msg => this.emit('signaling_shutdown', msg.seconds));
+    return this.distributor.on('shutdown',
+      msg => this.emit('signaling_shutdown', msg.seconds));
   }
 
   // Join the room
@@ -119,7 +123,9 @@ palava.Room = class Room extends defaultExport.EventEmitter {
     ), this.options.joinTimeout);
 
     for (let key of Array.from(status)) { this.options.ownStatus[key] = status[key]; }
-    if (!this.options.ownStatus.user_agent) { this.options.ownStatus.user_agent = palava.browser.getUserAgent(); }
+    if (!this.options.ownStatus.user_agent) {
+      this.options.ownStatus.user_agent = browser.browser.getUserAgent();
+    }
 
     return this.distributor.send({
       event: 'join_room',
