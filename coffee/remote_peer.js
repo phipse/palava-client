@@ -1,3 +1,4 @@
+const defaultExport = {};
 /*
  * decaffeinate suggestions:
  * DS102: Remove unnecessary code created because of implicit returns
@@ -12,7 +13,9 @@
 
 const {
   palava
-} = this;
+} = defaultExport;
+
+export default defaultExport;
 
 // TODO pack 'peer left' into 'send_to_peer' on server side
 

@@ -1,3 +1,4 @@
+const defaultExport = {};
 /*
  * decaffeinate suggestions:
  * DS102: Remove unnecessary code created because of implicit returns
@@ -8,9 +9,9 @@
 
 const {
   palava
-} = this;
+} = defaultExport;
 
-palava.Gum = class Gum extends this.EventEmitter {
+palava.Gum = class Gum extends defaultExport.EventEmitter {
   constructor(config) {
     super();
 
@@ -57,3 +58,4 @@ palava.Gum = class Gum extends this.EventEmitter {
     }
   }
 };
+export default defaultExport;

@@ -1,3 +1,4 @@
+const defaultExport = {};
 /*
  * decaffeinate suggestions:
  * DS102: Remove unnecessary code created because of implicit returns
@@ -8,7 +9,9 @@
 
 const {
   palava
-} = this;
+} = defaultExport;
+
+export default defaultExport;
 
 palava.Identity = class Identity {
   constructor(o) {

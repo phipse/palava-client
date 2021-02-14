@@ -1,3 +1,4 @@
+const defaultExport = {};
 /*
  * decaffeinate suggestions:
  * DS102: Remove unnecessary code created because of implicit returns
@@ -6,10 +7,12 @@
  */
 const {
   palava
-} = this;
+} = defaultExport;
 const {
   adapter
-} = this;
+} = defaultExport;
+
+export default defaultExport;
 
 // Checks whether the browser is a Firefox
 //

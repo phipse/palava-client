@@ -1,3 +1,4 @@
+const defaultExport = {};
 /*
  * decaffeinate suggestions:
  * DS103: Rewrite code to no longer use __guard__, or convert again using --optional-chaining
@@ -8,11 +9,11 @@
 
 const {
   palava
-} = this;
+} = defaultExport;
 
 // Class representing a participant in a room
 //
-palava.Peer = class Peer extends this.EventEmitter {
+palava.Peer = class Peer extends defaultExport.EventEmitter {
 
   // @param id [String] ID of the participant
   // @param status [Object] An object conataining state which is exchanged through the palava machine
@@ -111,6 +112,8 @@ palava.Peer = class Peer extends this.EventEmitter {
   //
   isRemote() { if (this.local) {  return false; } else { return true; } }
 };
+
+export default defaultExport;
 
 function __guard__(value, transform) {
   return (typeof value !== 'undefined' && value !== null) ? transform(value) : undefined;

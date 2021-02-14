@@ -1,3 +1,4 @@
+const defaultExport = {};
 /*
  * decaffeinate suggestions:
  * DS101: Remove unnecessary use of Array.from
@@ -8,9 +9,9 @@
  */
 const {
   palava
-} = this;
+} = defaultExport;
 
-const Cls = (palava.DataChannel = class DataChannel extends this.EventEmitter {
+const Cls = (palava.DataChannel = class DataChannel extends defaultExport.EventEmitter {
   static initClass() {
   
     this.prototype.MAX_BUFFER = 1024 * 1024;
@@ -71,5 +72,6 @@ const Cls = (palava.DataChannel = class DataChannel extends this.EventEmitter {
     }
   }
 });
+export default defaultExport;
 Cls.initClass();
 

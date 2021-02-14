@@ -1,3 +1,4 @@
+const defaultExport = {};
 /*
  * decaffeinate suggestions:
  * DS101: Remove unnecessary use of Array.from
@@ -10,7 +11,9 @@
 
 const {
   palava
-} = this;
+} = defaultExport;
+
+export default defaultExport;
 
 // A specialized peer representing the local user in the conference
 palava.LocalPeer = class LocalPeer extends palava.Peer {

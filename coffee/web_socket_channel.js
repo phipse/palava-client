@@ -1,3 +1,4 @@
+const defaultExport = {};
 /*
  * decaffeinate suggestions:
  * DS101: Remove unnecessary use of Array.from
@@ -8,13 +9,13 @@
  */
 const {
   palava
-} = this;
+} = defaultExport;
 
 // Channel implementation using websockets
 //
 // Events: open -> (), message -> (msg), error -> (), close -> ()
 //
-palava.WebSocketChannel = class WebSocketChannel extends this.EventEmitter {
+palava.WebSocketChannel = class WebSocketChannel extends defaultExport.EventEmitter {
 
   // @param address [String] Address of the websocket. Should start with `ws://` for web sockets or `wss://` for secure web sockets.
   constructor(address, retries) {
@@ -128,3 +129,4 @@ palava.WebSocketChannel = class WebSocketChannel extends this.EventEmitter {
     return this.socket.close();
   }
 };
+export default defaultExport;

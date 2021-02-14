@@ -1,3 +1,4 @@
+const defaultExport = {};
 /*
  * decaffeinate suggestions:
  * DS101: Remove unnecessary use of Array.from
@@ -13,11 +14,11 @@
 
 const {
   palava
-} = this;
+} = defaultExport;
 
 // A room connecting multiple participants
 //
-palava.Room = class Room extends this.EventEmitter {
+palava.Room = class Room extends defaultExport.EventEmitter {
 
   // @param roomId [String] ID of the room
   // @param channel [palava.Channel] Channel used for communication
@@ -182,3 +183,4 @@ palava.Room = class Room extends this.EventEmitter {
     return peers;
   }
 };
+export default defaultExport;

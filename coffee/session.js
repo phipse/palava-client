@@ -1,3 +1,4 @@
+const defaultExport = {};
 /*
  * decaffeinate suggestions:
  * DS102: Remove unnecessary code created because of implicit returns
@@ -10,10 +11,10 @@
 
 const {
   palava
-} = this;
+} = defaultExport;
 
 // Session is a wrapper around a concrete room, channel and userMedia
-palava.Session = class Session extends this.EventEmitter {
+palava.Session = class Session extends defaultExport.EventEmitter {
   // Creates the session object
   //
   // @param o [Object] See Session#connect for available options
@@ -253,3 +254,4 @@ palava.Session = class Session extends this.EventEmitter {
     return this.emit('session_after_destroy');
   }
 };
+export default defaultExport;

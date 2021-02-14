@@ -1,3 +1,4 @@
+const defaultExport = {};
 /*
  * decaffeinate suggestions:
  * DS102: Remove unnecessary code created because of implicit returns
@@ -6,7 +7,9 @@
  */
 const {
   palava
-} = this;
+} = defaultExport;
+
+export default defaultExport;
 
 // Distributor supports exchanging direct messages with peers through a channel.
 // The incoming messages are filtered and outgoing messages are are sent within
